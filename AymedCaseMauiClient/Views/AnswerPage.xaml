@@ -1,0 +1,45 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:behaviors="clr-namespace:AymedCaseMauiClient.Behaviors"
+             x:Class="AymedCaseMauiClient.Views.AnswerPage"
+             Title="Answer">
+    
+    <ContentPage.Resources>
+        <behaviors:NumericValidationBehavior x:Key="NumericValidationBehavior" />
+    </ContentPage.Resources>
+  <Grid ColumnDefinitions="220,*" Padding="16" ColumnSpacing="16">
+    <VerticalStackLayout Grid.Column="0" Spacing="8">
+      <Button Text="Bildirimleri İzle"   Command="{Binding StartEmptyCommand}"/>
+      <Button Text="Bildirimleri Durdur" Command="{Binding StopEmptyCommand}"/>
+      <Label Text="{Binding EmptyStatus}" Margin="0,4,0,0"/>
+      <!-- Anlık mesaj gösterimi -->
+      <Frame BorderColor="LightGray" Padding="5" Margin="0,4,0,8">
+        <Label Text="{Binding LastEmptyMessage}" FontSize="12" LineBreakMode="TailTruncation"/>
+      </Frame>
+
+      <Label Text="Değer"/>
+      <Entry Text="{Binding StreamValue}" Placeholder="İçerik"/>
+
+      <Button Text="Bildirimleri İzle"   Command="{Binding StartValueCommand}"/>
+      <Button Text="Bildirimleri Durdur" Command="{Binding StopValueCommand}"/>
+      <Label Text="{Binding ValueStatus}" Margin="0,4,0,0"/>
+      <!-- Anlık mesaj gösterimi -->
+      <Frame BorderColor="LightGray" Padding="5" Margin="0,4,0,8">
+        <Label Text="{Binding LastValueMessage}" FontSize="12" LineBreakMode="TailTruncation"/>
+      </Frame>
+
+      <Entry Text="{Binding CutIndex}" Placeholder="Kesilecek index (0-9)" Keyboard="Numeric" MaxLength="1" 
+             Behaviors="{x:StaticResource NumericValidationBehavior}"/>
+      <Button Text="Kes" Command="{Binding CutCommand}"/>
+    </VerticalStackLayout>
+
+    <VerticalStackLayout Grid.Column="1">
+      <Label Text="Son 10 Değer"/>
+      <CollectionView ItemsSource="{Binding Messages}">
+        <CollectionView.ItemTemplate>
+          <DataTemplate><Label Text="{Binding .}"/></DataTemplate>
+        </CollectionView.ItemTemplate>
+      </CollectionView>
+    </VerticalStackLayout>
+  </Grid>
+</ContentPage>

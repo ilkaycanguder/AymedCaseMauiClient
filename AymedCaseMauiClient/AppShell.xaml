@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell x:Class="AymedCaseMauiClient.AppShell"
+      xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+      xmlns:views="clr-namespace:AymedCaseMauiClient.Views">
+  <TabBar>
+    <ShellContent Title="Server" Route="Server"
+                  ContentTemplate="{DataTemplate views:ServerPage}" />
+    <ShellContent Title="Answer" Route="Answer"
+                  ContentTemplate="{DataTemplate views:AnswerPage}" />
+  </TabBar>
+</Shell>
